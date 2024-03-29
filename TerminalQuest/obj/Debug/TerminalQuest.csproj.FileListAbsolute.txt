@@ -1,0 +1,10 @@
+C:\Users\lucie\OneDrive\Área de Trabalho\Estudos\Terminal-Quest\TerminalQuest\bin\Debug\TerminalQuest.exe.config
+C:\Users\lucie\OneDrive\Área de Trabalho\Estudos\Terminal-Quest\TerminalQuest\bin\Debug\TerminalQuest.exe
+C:\Users\lucie\OneDrive\Área de Trabalho\Estudos\Terminal-Quest\TerminalQuest\bin\Debug\TerminalQuest.pdb
+C:\Users\lucie\OneDrive\Área de Trabalho\Estudos\Terminal-Quest\TerminalQuest\obj\Debug\TerminalQuest.csproj.AssemblyReference.cache
+C:\Users\lucie\OneDrive\Área de Trabalho\Estudos\Terminal-Quest\TerminalQuest\obj\Debug\TerminalQuest.csproj.CoreCompileInputs.cache
+C:\Users\lucie\OneDrive\Área de Trabalho\Estudos\Terminal-Quest\TerminalQuest\obj\Debug\TerminalQuest.exe
+C:\Users\lucie\OneDrive\Área de Trabalho\Estudos\Terminal-Quest\TerminalQuest\obj\Debug\TerminalQuest.pdb
+C:\Users\lucie\OneDrive\Área de Trabalho\Estudos\Terminal-Quest\TerminalQuest\bin\Debug\Figgle.dll
+C:\Users\lucie\OneDrive\Área de Trabalho\Estudos\Terminal-Quest\TerminalQuest\bin\Debug\Figgle.xml
+C:\Users\lucie\OneDrive\Área de Trabalho\Estudos\Terminal-Quest\TerminalQuest\obj\Debug\TerminalQuest.csproj.CopyComplete
