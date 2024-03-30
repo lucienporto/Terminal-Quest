@@ -9,7 +9,7 @@ namespace TerminalQuest.Classes
 {
     public class Lobo
     {
-        public static int loboHP = 10;
+        public static int loboHP = 5;
 
         public static void Mordida()
         {
@@ -18,8 +18,10 @@ namespace TerminalQuest.Classes
 
             Artifice.hp = Artifice.hp - d4;
             Mago.hp = Mago.hp - d4;
+            Paladino.hp = Paladino.hp - d4;
+            Monge.hp = Monge.hp - d4;
 
-            Console.WriteLine($"O lobo te ataca com uma mordida, te causando {d4} de dano.");
+            Console.WriteLine($"\nO lobo te ataca com uma mordida, te causando {d4} de dano.");
             Console.WriteLine("\nPressione ENTER para continuar.");
             Console.ReadLine();
         }

@@ -2,35 +2,35 @@
 
 namespace TerminalQuest.Classes.Personagens
 {
-    public class Artifice
+    public class Paladino
     {
-        public static int hp = 15;
-        public static int bombas = 5;
+        public static int hp = 25;
+        public static int magias = 5;
         public static int potions = 0;
         public static int damage = 0;
 
         public static void StatusBar()
         {
-            Console.WriteLine($"\t\t\tHP: {hp}, Bombas restantes: {bombas}, Poções {potions}");
+            Console.WriteLine($"\t\t\tHP: {hp}, Benção restante: {magias}, Poções {potions}");
         }
 
-        public static void AtacaMartelo()
+        public static void AtacaEspada()
         {
             Random random = new Random();
 
-            int d10 = random.Next(1, 11);
-            damage = d10;
-            Console.WriteLine($"Você desfere um golpe com seu martelo causando {d10} de dano.");
+            int d8 = random.Next(1, 9);
+            damage = d8;
+            Console.WriteLine($"Com um corte preciso, você causa {d8} de dano com sua espada.");
         }
 
-        public static void AtacaBombas()
+        public static void MagiaDivina()
         {
             Random random = new Random();
 
             int d12 = random.Next(1, 13);
             damage = d12;
-            Console.WriteLine($"Você utiliza uma de suas bombas, a explosão causa {d12} de dano.");
-            bombas--;
+            Console.WriteLine($"Banhando sua espada em uma aura divina, seu ataque causa {d12} de dano.");
+            magias--;
         }
 
         public static void BatalhaLobo()
@@ -41,8 +41,8 @@ namespace TerminalQuest.Classes.Personagens
                 StatusBar();
 
                 Console.WriteLine("\nEscolha sua ação:");
-                Console.WriteLine("\n1.Atacar com o martelo");
-                Console.WriteLine("\n2.Usar uma bomba");
+                Console.WriteLine("\n1.Atacar com a espada");
+                Console.WriteLine("\n2.Usar o banimento divino");
 
                 try
                 {
@@ -56,19 +56,19 @@ namespace TerminalQuest.Classes.Personagens
 
                 if (Gaming.selectOption == 1)
                 {
-                    AtacaMartelo();
+                    AtacaEspada();
                     Lobo.loboHP = Lobo.loboHP - damage;
                 }
                 else if (Gaming.selectOption == 2)
                 {
-                    if (bombas > 0)
+                    if (magias > 0)
                     {
-                        AtacaBombas();
+                        MagiaDivina();
                         Lobo.loboHP = Lobo.loboHP - damage;
                     }
                     else
                     {
-                        Console.WriteLine("Você procura em seu cinto por suas bombas, mas já usou todas elas.");
+                        Console.WriteLine("A faz a prece para invocar a magia divina, mas por exaustão ela não tem efeito.");
                     }
                 }
 
@@ -78,7 +78,7 @@ namespace TerminalQuest.Classes.Personagens
                 }
                 else
                 {
-                    Console.WriteLine("\nO pobre animal se debate no chão enquanto sua vida se esvai. Você aplica um último golpe com seu martelo e encerra de vez seu sofrimento.");
+                    Console.WriteLine("\nO pobre animal se debate no chão enquanto sua vida se esvai. Você faz uma oração rápida e encerra de vez seu sofrimento.");
                     Console.WriteLine("\nPressione ENTER para continuar.");
                     Console.ReadLine();
                     continue;

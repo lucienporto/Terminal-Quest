@@ -52,6 +52,8 @@
     <Compile Include="Classes\Personagens\Inimigos.cs" />
     <Compile Include="Classes\MenuPrincipal.cs" />
     <Compile Include="Classes\Personagens\Mago.cs" />
+    <Compile Include="Classes\Personagens\Paladino.cs" />
+    <Compile Include="Classes\Personagens\Monge.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

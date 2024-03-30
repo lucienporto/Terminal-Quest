@@ -15,7 +15,7 @@ namespace TerminalQuest.Classes.Personagens
 
         public static void StatusBar()
         {
-            Console.WriteLine($"\t\t\tHP: {hp}, Bombas restantes: {magias}, Poções {potions}");
+            Console.WriteLine($"\t\t\tHP: {hp}, Mana restante: {magias}, Poções {potions}");
         }
 
         public static void MisseisMagicos()
@@ -62,8 +62,6 @@ namespace TerminalQuest.Classes.Personagens
                 {
                     MisseisMagicos();
                     Lobo.loboHP = Lobo.loboHP - damage;
-                    Console.WriteLine("\nPressione ENTER para continuar.");
-                    Console.ReadLine();
                 }
                 else if (Gaming.selectOption == 2)
                 {
@@ -74,10 +72,8 @@ namespace TerminalQuest.Classes.Personagens
                     }
                     else
                     {
-                        Console.WriteLine("Você tenta disparar um choque elétrico em seu oponente, mas seu mana está totalmente drenado");
+                        Console.WriteLine("Você tenta disparar um choque elétrico em seu oponente, mas seu mana está totalmente drenado.");
                     }
-                    Console.WriteLine("\nPressione ENTER para continuar.");
-                    Console.ReadLine();
                 }
 
                 if (Lobo.loboHP >= 1)
@@ -86,7 +82,7 @@ namespace TerminalQuest.Classes.Personagens
                 }
                 else
                 {
-                    Console.WriteLine("O pobre animal se debate no chão enquanto sua vida se esvai. Você aplica um último golpe e encerra de vez seu sofrimento.");
+                    Console.WriteLine("\nO pobre animal se debate no chão enquanto sua vida se esvai. Você usa sua magia para encerrar de vez seu sofrimento.");
                     Console.WriteLine("\nPressione ENTER para continuar.");
                     Console.ReadLine();
                     continue;
@@ -94,7 +90,7 @@ namespace TerminalQuest.Classes.Personagens
 
                 if (hp <= 0)
                 {
-                    Console.WriteLine("Você sente as mandíbulas do animal se fechando em seu pescoço. O mundo escurece ao seu redor e você se entrega a uma morte patética.");
+                    Console.WriteLine("Você sente as mandíbulas do animal se fechando em seu pescoço enquanto o mundo escurece ao seu redor e você se entrega a uma morte patética. O predador faminto teria uma refeição aquela noite.");
                     Console.WriteLine("\nPressione ENTER para continuar.");
                     Console.ReadLine();
                     continue;
