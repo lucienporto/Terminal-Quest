@@ -1,17 +1,16 @@
 ﻿using Figgle;
 using System;
+using System.Net;
 using System.Threading;
+using TerminalQuest.Classes.Personagens;
 
 namespace TerminalQuest.Classes
 {
     public class Gaming
     {   
-        private static int selectOption = 0;
+        public static int selectOption = 0;
         private static int fugaBatalhas = 0;
-        public static string nome = "";
-        public static int hp = 20;
-        public static int usosMagia = 5;
-        public static int potions = 0;
+        public static string nome;
         public static void SetupPlayer()
         {
             Console.Clear();
@@ -19,104 +18,58 @@ namespace TerminalQuest.Classes
             Console.WriteLine("Insira o nome do seu personagem: ");
             nome = Console.ReadLine();
 
-            Historia.Parte1();
-            
-            BatalhaLobo();
+            Console.WriteLine("Escolha a classe do seu personagem:");
+            Console.WriteLine("1. Artifice - HP: 15; Martelo: dano de concussão 1d10; Bombas: dano de fogo 1d12");
+            Console.WriteLine("2. Mago - HP: 10; Mísseis Mágicos: dano mágico 1d6; Choque Elétrico: dano mágico elemental 1d20");
+            Console.WriteLine("3. Paladino - HP: 25; Espada Longa: dano de corte 1d8; Banimento Divino: dano mágico sagrado 1d12");
+            Console.WriteLine("4. Soldado - HP: 20; Lança: dano perfurante 1d6; Escudo: absorve 1d10 de dano");
 
-            if (hp > 0)
+            try
             {
-                Historia.Parte2();
-                
-                Historia.PerguntasSobreFogo();
-
-                Historia.Parte3();
-
-                Console.Clear();
-                Console.WriteLine("Updates em breve.");
-                Thread.Sleep(5000);
-                MenuPrincipal.GameOver();
-
+                selectOption = int.Parse(Console.ReadLine());
             }
-            else
+            catch (FormatException erro)
             {
-                MenuPrincipal.GameOver();
-            }  
-        }
-
-        private static void StatusBar()
-        {
-            Console.WriteLine($"\t\t\tHP: {hp}, Magias restantes: {usosMagia}, Poções {potions}");
-        }
-
-        private static void BatalhaLobo()
-        {
-            int loboHP = 10;
-
-            Random random = new Random();
-
-            while (loboHP > 0 && hp > 0)
-            {
-                Console.Clear();
-                StatusBar();
-
-                Console.WriteLine("\nEscolha sua ação:");
-                Console.WriteLine("\n1.Atacar com espada larga");
-                Console.WriteLine("\n2.Atacar com magia de fogo");
-
-                try
-                {
-                    selectOption = int.Parse(Console.ReadLine());
-                }
-                catch (FormatException erro)
-                {
-                    Console.WriteLine("Detectamos um erro, tente novamente.");
-                    BatalhaLobo();
-                }
-
-                if (selectOption == 1)
-                {
-                    int d10 = random.Next(1,10);
-                    loboHP = loboHP - d10;
-                    Console.WriteLine($"Você ataca com sua espada causando {d10} de dano.");
-                    Console.WriteLine("\nPressione ENTER para continuar.");
-                    Console.ReadLine();
-                }
-                else if (selectOption == 2)
-                {
-                    int d12 = random.Next(1, 13);
-                    usosMagia--;
-                    loboHP = loboHP - d12;
-                    Console.WriteLine($"Você ataca com sua espada causando {d12} de dano.");
-                    Console.WriteLine("\nPressione ENTER para continuar.");
-                    Console.ReadLine();
-                }
-
-                if (loboHP >= 1)
-                {
-                    int d4 = random.Next(1, 5);
-                    hp = hp - d4;
-                    Console.WriteLine($"O lobo te ataca com uma mordida, te causando {d4} de dano.");
-                    Console.WriteLine("\nPressione ENTER para continuar.");
-                    Console.ReadLine();
-                }
-                else
-                {
-                    Console.WriteLine("O pobre animal se debate no chão enquanto sua vida se esvai. Você aplica um último golpe e encerra de vez seu sofrimento.");
-                    Console.WriteLine("\nPressione ENTER para continuar.");
-                    Console.ReadLine();
-                    continue;
-                }
-
-                if (hp <= 0)
-                {
-                    Console.WriteLine("Você sente as mandíbulas do animal se fechando em seu pescoço. O mundo escurece ao seu redor e você se entrega a uma morte patética.");
-                    Console.WriteLine("\nPressione ENTER para continuar.");
-                    Console.ReadLine();
-                    continue;
-                }
+                Console.WriteLine("Detectamos um erro, tente novamente");
+                SetupPlayer();
             }
 
+            switch (selectOption)
+            {
+                case 1:
+                    Brancaster.Parte1();
+                    Artifice.BatalhaLobo();
 
+                    if (Artifice.hp > 0)
+                    {
+                        Brancaster.Parte2();
+                        Brancaster.PerguntasSobreFogo();
+                        Brancaster.Parte3();
+                    }
+
+                    Console.Clear();
+                    Console.WriteLine("Updates em breve.");
+                    Thread.Sleep(5000);
+                    MenuPrincipal.GameOver();
+                    break;
+
+                case 2:
+                    Brancaster.Parte1();
+                    Mago.BatalhaLobo();
+
+                    if (Mago.hp > 0)
+                    {
+                        Brancaster.Parte2();
+                        Brancaster.PerguntasSobreFogo();
+                        Brancaster.Parte3();
+                    }
+
+                    Console.Clear();
+                    Console.WriteLine("Updates em breve.");
+                    Thread.Sleep(5000);
+                    MenuPrincipal.GameOver();
+                    break;
+            }
         }
 
     }

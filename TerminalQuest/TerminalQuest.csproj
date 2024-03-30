@@ -47,8 +47,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Gaming.cs" />
-    <Compile Include="Classes\Historia.cs" />
+    <Compile Include="Classes\Historia\Brancaster.cs" />
+    <Compile Include="Classes\Personagens\Artifice.cs" />
+    <Compile Include="Classes\Personagens\Inimigos.cs" />
     <Compile Include="Classes\MenuPrincipal.cs" />
+    <Compile Include="Classes\Personagens\Mago.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

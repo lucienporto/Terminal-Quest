@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TerminalQuest.Classes
 {
-    public class Historia
+    public class Brancaster
     {
         private static int selectOption = 0;
         public static void Parte1()
