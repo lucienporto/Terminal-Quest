@@ -2,35 +2,35 @@
 
 namespace TerminalQuest.Classes.Personagens
 {
-    public class Artifice
+    internal class Mago
     {
-        public static int hp = 15;
-        public static int bombas = 5;
+        public static int hp = 10;
+        public static int magias = 5;
         public static int potions = 0;
-        public static int damage = 0;
+        public static int damage;
 
         public static void StatusBar()
         {
-            Console.WriteLine($"\t\t\tHP: {hp}, Bombas restantes: {bombas}, Poções {potions}");
+            Console.WriteLine($"\t\t\tHP: {hp}, Mana restante: {magias}, Poções {potions}");
         }
 
-        public static void AtacaMartelo()
+        public static void MisseisMagicos()
         {
             Random random = new Random();
 
-            int d10 = random.Next(1, 11);
-            damage = d10;
-            Console.WriteLine($"Você desfere um golpe com seu martelo causando {d10} de dano.");
+            int d6 = random.Next(1, 7);
+            damage = d6;
+            Console.WriteLine($"Você dispara um de seus mísseis mágicos causando {d6} de dano.");
         }
 
-        public static void AtacaBombas()
+        public static void ChoqueEletrico()
         {
             Random random = new Random();
 
-            int d12 = random.Next(1, 13);
-            damage = d12;
-            Console.WriteLine($"Você utiliza uma de suas bombas, a explosão causa {d12} de dano.");
-            bombas--;
+            int d20 = random.Next(1, 21);
+            damage = d20;
+            Console.WriteLine($"Um feixe elétrico sai da ponta dos seus dedos causando {d20} de dano.");
+            magias--;
         }
 
         public static void BatalhaLobo()
@@ -41,8 +41,8 @@ namespace TerminalQuest.Classes.Personagens
                 StatusBar();
 
                 Console.WriteLine("\nEscolha sua ação:");
-                Console.WriteLine("\n1.Atacar com o martelo");
-                Console.WriteLine("\n2.Usar uma bomba");
+                Console.WriteLine("\n1.Atacar com mísseis mágicos");
+                Console.WriteLine("\n2.Atacar com choque elétrico");
 
                 try
                 {
@@ -56,19 +56,19 @@ namespace TerminalQuest.Classes.Personagens
 
                 if (Gaming.selectOption == 1)
                 {
-                    AtacaMartelo();
+                    MisseisMagicos();
                     Lobo.loboHP = Lobo.loboHP - damage;
                 }
                 else if (Gaming.selectOption == 2)
                 {
-                    if (bombas > 0)
+                    if (magias > 0)
                     {
-                        AtacaBombas();
+                        ChoqueEletrico();
                         Lobo.loboHP = Lobo.loboHP - damage;
                     }
                     else
                     {
-                        Console.WriteLine("Você procura em seu cinto por suas bombas, mas já usou todas elas.");
+                        Console.WriteLine("Você tenta disparar um choque elétrico em seu oponente, mas seu mana está totalmente drenado.");
                     }
                 }
 
@@ -78,7 +78,7 @@ namespace TerminalQuest.Classes.Personagens
                 }
                 else
                 {
-                    Console.WriteLine("\nO pobre animal se debate no chão enquanto sua vida se esvai. Você aplica um último golpe com seu martelo e encerra de vez seu sofrimento.");
+                    Console.WriteLine("\nO pobre animal se debate no chão enquanto sua vida se esvai. Você usa sua magia para encerrar de vez seu sofrimento.");
                     Console.WriteLine("\nPressione ENTER para continuar.");
                     Console.ReadLine();
                     continue;
@@ -86,7 +86,7 @@ namespace TerminalQuest.Classes.Personagens
 
                 if (hp <= 0)
                 {
-                    Console.WriteLine("Você sente as mandíbulas do animal se fechando em seu pescoço enquanto o mundo escurece ao seu redor. O predador faminto teria uma refeição aquela noite.");
+                    Console.WriteLine("Você sente as mandíbulas do animal se fechando em seu pescoço enquanto o mundo escurece ao seu redor e você se entrega a uma morte patética. O predador faminto teria uma refeição aquela noite.");
                     Console.WriteLine("\nPressione ENTER para continuar.");
                     Console.ReadLine();
                     continue;

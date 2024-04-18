@@ -42,10 +42,9 @@ namespace TerminalQuest.Classes
                     Brancaster.Parte1();
                     Artifice.BatalhaLobo();
 
-                    if (Artifice.hp > 0)
+                    if (Artifice.hp[0] > 0)
                     {
                         Brancaster.Parte2();
-                        Brancaster.PerguntasSobreFogo();
                         Brancaster.Parte3();
                     }
 
@@ -62,7 +61,6 @@ namespace TerminalQuest.Classes
                     if (Mago.hp > 0)
                     {
                         Brancaster.Parte2();
-                        Brancaster.PerguntasSobreFogo();
                         Brancaster.Parte3();
                     }
 
@@ -79,7 +77,6 @@ namespace TerminalQuest.Classes
                     if (Monge.hp > 0)
                     {
                         Brancaster.Parte2();
-                        Brancaster.PerguntasSobreFogo();
                         Brancaster.Parte3();
                     }
 
@@ -96,7 +93,6 @@ namespace TerminalQuest.Classes
                     if (Paladino.hp > 0)
                     {
                         Brancaster.Parte2();
-                        Brancaster.PerguntasSobreFogo();
                         Brancaster.Parte3();
                     }
 

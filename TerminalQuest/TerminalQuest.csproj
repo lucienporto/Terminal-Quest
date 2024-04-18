@@ -48,12 +48,21 @@
   <ItemGroup>
     <Compile Include="Classes\Gaming.cs" />
     <Compile Include="Classes\Historia\Brancaster.cs" />
-    <Compile Include="Classes\Personagens\Artifice.cs" />
-    <Compile Include="Classes\Personagens\Inimigos.cs" />
+    <Compile Include="Classes\Personagens\Heros\Artifice.cs" />
+    <Compile Include="Classes\Personagens\Inimigos\Esqueleto.cs" />
+    <Compile Include="Classes\Personagens\Inimigos\Goblins.cs" />
+    <Compile Include="Classes\Personagens\Inimigos\Golem.cs" />
+    <Compile Include="Classes\Personagens\Inimigos\Bruxo.cs" />
+    <Compile Include="Classes\Personagens\Inimigos\CavaleiroDoAbismo.cs" />
+    <Compile Include="Classes\Personagens\Inimigos\Kykos.cs" />
+    <Compile Include="Classes\Personagens\Inimigos\SenhordoAbismo.cs" />
+    <Compile Include="Classes\Personagens\Inimigos\Orc.cs" />
+    <Compile Include="Classes\Personagens\Inimigos\Zumbi.cs" />
+    <Compile Include="Classes\Personagens\Inimigos\Lobo.cs" />
     <Compile Include="Classes\MenuPrincipal.cs" />
-    <Compile Include="Classes\Personagens\Mago.cs" />
-    <Compile Include="Classes\Personagens\Paladino.cs" />
-    <Compile Include="Classes\Personagens\Monge.cs" />
+    <Compile Include="Classes\Personagens\Heros\Mago.cs" />
+    <Compile Include="Classes\Personagens\Heros\Paladino.cs" />
+    <Compile Include="Classes\Personagens\Heros\Monge.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

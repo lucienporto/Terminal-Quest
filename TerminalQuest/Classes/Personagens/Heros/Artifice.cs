@@ -2,47 +2,47 @@
 
 namespace TerminalQuest.Classes.Personagens
 {
-    public class Paladino
+    public class Artifice
     {
-        public static int hp = 25;
-        public static int magias = 5;
+        public static int[] hp = {15, 21, 30, 42, 58, 81};
+        public static int bombas = 5;
         public static int potions = 0;
-        public static int damage = 0;
+        public static int damage;
 
         public static void StatusBar()
         {
-            Console.WriteLine($"\t\t\tHP: {hp}, Benção restante: {magias}, Poções {potions}");
+            Console.WriteLine($"\t\t\tHP: {hp[0]}, Bombas restantes: {bombas}, Poções {potions}");
         }
 
-        public static void AtacaEspada()
+        public static void AtacaMartelo()
         {
             Random random = new Random();
 
-            int d8 = random.Next(1, 9);
-            damage = d8;
-            Console.WriteLine($"Com um corte preciso, você causa {d8} de dano com sua espada.");
+            int d10 = random.Next(1, 11);
+            damage = d10;
+            Console.WriteLine($"Você desfere um golpe com seu martelo causando {d10} de dano.");
         }
 
-        public static void MagiaDivina()
+        public static void AtacaBombas()
         {
             Random random = new Random();
 
             int d12 = random.Next(1, 13);
             damage = d12;
-            Console.WriteLine($"Banhando sua espada em uma aura divina, seu ataque causa {d12} de dano.");
-            magias--;
+            Console.WriteLine($"Você utiliza uma de suas bombas, a explosão causa {d12} de dano.");
+            bombas--;
         }
 
         public static void BatalhaLobo()
         {
-            while (Lobo.loboHP > 0 && hp > 0)
+            while (Lobo.loboHP > 0 && hp[0] > 0)
             {
                 Console.Clear();
                 StatusBar();
 
                 Console.WriteLine("\nEscolha sua ação:");
-                Console.WriteLine("\n1.Atacar com a espada");
-                Console.WriteLine("\n2.Usar o banimento divino");
+                Console.WriteLine("\n1.Atacar com o martelo");
+                Console.WriteLine("\n2.Usar uma bomba");
 
                 try
                 {
@@ -56,19 +56,19 @@ namespace TerminalQuest.Classes.Personagens
 
                 if (Gaming.selectOption == 1)
                 {
-                    AtacaEspada();
+                    AtacaMartelo();
                     Lobo.loboHP = Lobo.loboHP - damage;
                 }
                 else if (Gaming.selectOption == 2)
                 {
-                    if (magias > 0)
+                    if (bombas > 0)
                     {
-                        MagiaDivina();
+                        AtacaBombas();
                         Lobo.loboHP = Lobo.loboHP - damage;
                     }
                     else
                     {
-                        Console.WriteLine("A faz a prece para invocar a magia divina, mas por exaustão ela não tem efeito.");
+                        Console.WriteLine("Você procura em seu cinto por suas bombas, mas já usou todas elas.");
                     }
                 }
 
@@ -78,13 +78,13 @@ namespace TerminalQuest.Classes.Personagens
                 }
                 else
                 {
-                    Console.WriteLine("\nO pobre animal se debate no chão enquanto sua vida se esvai. Você faz uma oração rápida e encerra de vez seu sofrimento.");
+                    Console.WriteLine("\nO pobre animal se debate no chão enquanto sua vida se esvai. Você aplica um último golpe com seu martelo e encerra de vez seu sofrimento.");
                     Console.WriteLine("\nPressione ENTER para continuar.");
                     Console.ReadLine();
                     continue;
                 }
 
-                if (hp <= 0)
+                if (hp[0] <= 0)
                 {
                     Console.WriteLine("Você sente as mandíbulas do animal se fechando em seu pescoço enquanto o mundo escurece ao seu redor. O predador faminto teria uma refeição aquela noite.");
                     Console.WriteLine("\nPressione ENTER para continuar.");

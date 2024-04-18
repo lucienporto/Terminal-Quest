@@ -7,7 +7,7 @@ namespace TerminalQuest.Classes.Personagens
         public static int hp = 20;
         public static int lanca = 5;
         public static int potions = 0;
-        public static int damage = 0;
+        public static int damage;
 
         public static void StatusBar()
         {

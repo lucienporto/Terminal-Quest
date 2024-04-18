@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace TerminalQuest.Classes
 {
@@ -80,6 +76,8 @@ namespace TerminalQuest.Classes
             Console.WriteLine("\n\tAo entrar na cidade, você decide perguntar o que aconteceu:");
             Console.WriteLine("\nPressione ENTER para continuar");
             Console.ReadLine();
+
+            PerguntasSobreFogo();
         }
 
         public static void PerguntasSobreFogo()
