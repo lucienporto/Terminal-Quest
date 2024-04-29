@@ -9,7 +9,9 @@ namespace TerminalQuest.Classes
     public class Gaming
     {   
         public static int selectOption = 0;
-        private static int fugaBatalhas = 0;
+        private static int idHeroi;
+        public static int fugaBatalhas = 0;
+        private static int idInimigo = 2;
         public static string nome;
         public static void SetupPlayer()
         {
@@ -39,8 +41,9 @@ namespace TerminalQuest.Classes
             switch (selectOption)
             {
                 case 1:
+                    idHeroi = 1;
                     Brancaster.Parte1();
-                    Artifice.BatalhaLobo();
+                    Batalha();
 
                     if (Artifice.hp[0] > 0)
                     {
@@ -56,7 +59,7 @@ namespace TerminalQuest.Classes
 
                 case 2:
                     Brancaster.Parte1();
-                    Mago.BatalhaLobo();
+                    Batalha();
 
                     if (Mago.hp > 0)
                     {
@@ -72,7 +75,7 @@ namespace TerminalQuest.Classes
 
                 case 3:
                     Brancaster.Parte1();
-                    Monge.BatalhaLobo();
+                    Batalha();
 
                     if (Monge.hp > 0)
                     {
@@ -88,7 +91,7 @@ namespace TerminalQuest.Classes
 
                 case 4:
                     Brancaster.Parte1();
-                    Paladino.BatalhaLobo();
+                    Batalha();
 
                     if (Paladino.hp > 0)
                     {
@@ -102,6 +105,27 @@ namespace TerminalQuest.Classes
                     MenuPrincipal.GameOver();
                     break;
             }
+        }
+
+        public static void Batalha()
+        {
+           switch (idHeroi)
+            {
+                case 1:
+                    switch (idInimigo)
+                    {
+                        case 1:
+                            Artifice.BatalhaLobo();
+                            idInimigo++;
+                            break;
+
+                        case 2:
+                            Artifice.BatalhaZumbi();
+                            idInimigo++;
+                            break;
+                    }
+                    break;
+            } 
         }
 
     }
