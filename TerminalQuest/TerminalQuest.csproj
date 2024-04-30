@@ -49,11 +49,13 @@
     <Compile Include="Classes\Gaming.cs" />
     <Compile Include="Classes\Historia\Brancaster.cs" />
     <Compile Include="Classes\Personagens\Heros\Artifice.cs" />
+    <Compile Include="Classes\Personagens\Heros\Herois.cs" />
     <Compile Include="Classes\Personagens\Inimigos\Esqueleto.cs" />
     <Compile Include="Classes\Personagens\Inimigos\Goblins.cs" />
     <Compile Include="Classes\Personagens\Inimigos\Golem.cs" />
     <Compile Include="Classes\Personagens\Inimigos\Bruxo.cs" />
     <Compile Include="Classes\Personagens\Inimigos\CavaleiroDoAbismo.cs" />
+    <Compile Include="Classes\Personagens\Inimigos\Inimigos.cs" />
     <Compile Include="Classes\Personagens\Inimigos\Kykos.cs" />
     <Compile Include="Classes\Personagens\Inimigos\SenhordoAbismo.cs" />
     <Compile Include="Classes\Personagens\Inimigos\Orc.cs" />
