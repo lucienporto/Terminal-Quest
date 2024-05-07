@@ -6,21 +6,15 @@ namespace TerminalQuest.Classes.Personagens.Heros
     internal class Herois
     {
         public Herois() { }
-        public Herois(int Hp, int Magias, int Potions) 
-        {
-            this.Hp = Hp;
-            this.Magias = Magias;
-            this.Potions = Potions;
-        }
 
-        public int Hp;
+        public double Hp;
         public int Magias;
         public int Potions;
         public int Damage;
 
         public void StatusBar()
         {
-            Console.WriteLine($"\t\t\tHP: {Hp}, Magias restante: {Magias}, Poções: {Potions}");
+           Console.WriteLine($"\t\t\tHP: {Hp}, Magias restante: {Magias}, Poções: {Potions}");
         }
 
         public void AtacaEspada()
