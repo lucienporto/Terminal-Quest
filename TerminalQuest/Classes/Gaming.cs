@@ -16,6 +16,7 @@ namespace TerminalQuest.Classes
         private static int idHeroi;
         public static int fugaBatalhas = 0;
         public static int idInimigo = 1;
+        public static int gemasDeVida = 1;
         public static string nome;
 
         
@@ -114,9 +115,14 @@ namespace TerminalQuest.Classes
 
                 case 5:
                     idHeroi = 5;
-                    Brancaster.Parte1();
+                    //Brancaster.Parte1();
                     Batalha();
+                    Console.WriteLine("Você ganhou 3 poções!");
                     Console.WriteLine("Enchendo linguiça");
+                    Thread.Sleep(3000);
+                    Batalha();
+                    Console.Clear();
+                    Console.WriteLine("Enchendo linguiça de novo");
                     Thread.Sleep(3000);
                     Batalha();
                     break;
@@ -125,7 +131,7 @@ namespace TerminalQuest.Classes
 
         public static void Batalha()
         {
-           switch (idHeroi)
+            switch (idHeroi)
             {
                 case 1:
                     switch (idInimigo)
@@ -212,76 +218,482 @@ namespace TerminalQuest.Classes
                             break;
 
                         case 2:
+                            fakeHero.Potions = 3;
                             Inimigos zumbi = new Inimigos(8);
-                            while (zumbi.Hp > 0 && fakeHero.Hp > 0)
+                            switch (gemasDeVida)
                             {
-                                Console.Clear();
-                                fakeHero.StatusBar();
-
-                                Console.WriteLine("\nEscolha sua ação:");
-                                Console.WriteLine("\n1.Atacar com a espada");
-                                Console.WriteLine("\n2.Usar o choque elétrico");
-
-                                try
-                                {
-                                    Gaming.selectOption = int.Parse(Console.ReadLine());
-                                }
-                                catch (FormatException erro)
-                                {
-                                    Console.WriteLine("Detectamos um erro, tente novamente.");
-                                    Batalha();
-                                }
-
-                                if (Gaming.selectOption == 1)
-                                {
-                                    fakeHero.AtacaEspada();
-                                    zumbi.Hp = zumbi.Hp - fakeHero.Damage;
-                                }
-                                else if (Gaming.selectOption == 2)
-                                {
-                                    if (fakeHero.Magias > 0)
+                                case 0:
+                                    while (zumbi.Hp > 0 && fakeHero.Hp > 0)
                                     {
-                                        fakeHero.ChoqueEletrico();
-                                        zumbi.Hp = zumbi.Hp - fakeHero.Damage;
+                                        Console.Clear();
+                                        fakeHero.StatusBar();
+
+                                        Console.WriteLine("\nEscolha sua ação:");
+                                        Console.WriteLine("\n1.Atacar com a espada");
+                                        Console.WriteLine("\n2.Usar o choque elétrico");
+                                        Console.WriteLine("\n3.Usar poção de cura");
+
+                                        try
+                                        {
+                                            Gaming.selectOption = int.Parse(Console.ReadLine());
+                                        }
+                                        catch (FormatException erro)
+                                        {
+                                            Console.WriteLine("Detectamos um erro, tente novamente.");
+                                            Batalha();
+                                        }
+
+                                        if (Gaming.selectOption == 1)
+                                        {
+                                            fakeHero.AtacaEspada();
+                                            zumbi.Hp = zumbi.Hp - fakeHero.Damage;
+                                        }
+                                        else if (Gaming.selectOption == 2)
+                                        {
+                                            if (fakeHero.Magias > 0)
+                                            {
+                                                fakeHero.ChoqueEletrico();
+                                                zumbi.Hp = zumbi.Hp - fakeHero.Damage;
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine("A magia brochou!");
+                                            }
+                                        } else if (Gaming.selectOption == 3)
+                                        {
+                                            if (fakeHero.Potions > 0)
+                                            {
+                                                fakeHero.Potions--;
+                                                double cura = 20 - fakeHero.Hp;
+                                                fakeHero.Hp += cura;
+                                                Console.WriteLine($"Você recuperou {cura} pontos de vida.");
+                                            } else
+                                            {
+                                                Console.WriteLine("Você está sem poções de cura!");
+                                            }
+                                        }
+
+                                        if (zumbi.Hp >= 1)
+                                        {
+                                            Random random = new Random();
+                                            int ataque = random.Next(1, 3);
+                                            if (ataque == 1)
+                                            {
+                                                zumbi.Mordida();
+                                                fakeHero.Hp = fakeHero.Hp - zumbi.InimigoDamage;
+                                            }
+                                            else
+                                            {
+                                                zumbi.Arranha();
+                                                fakeHero.Hp = fakeHero.Hp - zumbi.InimigoDamage;
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine("\nO morto-vivo cai no chão emitindo um baque seco. A carcaça reanimada por necromancia já não apresenta perigo.");
+                                            Console.WriteLine("\nPressione ENTER para continuar.");
+                                            Console.ReadLine();
+                                            continue;
+                                        }
+
+                                        if (fakeHero.Hp <= 0)
+                                        {
+                                            Console.WriteLine("Com arranhões e mordidas, o zumbi arranca pedaços e destrói seu corpo. Em seus últimos momentos você se sente patético por ter sido derrotado.");
+                                            Console.WriteLine("\nPressione ENTER para continuar.");
+                                            Console.ReadLine();
+                                            continue;
+                                        }
                                     }
-                                    else
-                                    {
-                                        Console.WriteLine("A magia brochou!");
-                                    }
-                                }
+                                    idInimigo++;
+                                    break;
 
-                                if (zumbi.Hp >= 1)
-                                {
-                                    Random random = new Random();
-                                    int ataque = random.Next(1,3);
-                                    if (ataque == 1)
+                                case 1:
+                                    fakeHero.Hp = (fakeHero.Hp * 0.45) + fakeHero.Hp;
+                                    while (zumbi.Hp > 0 && fakeHero.Hp > 0)
                                     {
-                                        zumbi.Mordida();
-                                        fakeHero.Hp = fakeHero.Hp - zumbi.InimigoDamage;
-                                    } else
-                                    {
-                                        zumbi.Arranha();
-                                        fakeHero.Hp = fakeHero.Hp - zumbi.InimigoDamage;
-                                    }
-                                    
-                                }
-                                else
-                                {
-                                    Console.WriteLine("\nO morto-vivo cai no chão emitindo um baque seco. A carcaça reanimada por necromancia já não apresenta perigo.");
-                                    Console.WriteLine("\nPressione ENTER para continuar.");
-                                    Console.ReadLine();
-                                    continue;
-                                }
+                                        Console.Clear();
+                                        fakeHero.StatusBar();
 
-                                if (fakeHero.Hp <= 0)
-                                {
-                                    Console.WriteLine("Com arranhões e mordidas, o zumbi arranca pedaços e destrói seu corpo. Em seus últimos momentos você se sente patético por ter sido derrotado.");
-                                    Console.WriteLine("\nPressione ENTER para continuar.");
-                                    Console.ReadLine();
-                                    continue;
-                                }
+                                        Console.WriteLine("\nEscolha sua ação:");
+                                        Console.WriteLine("\n1.Atacar com a espada");
+                                        Console.WriteLine("\n2.Usar o choque elétrico");
+                                        Console.WriteLine("\n3.Usar poção de cura");
+
+                                        try
+                                        {
+                                            Gaming.selectOption = int.Parse(Console.ReadLine());
+                                        }
+                                        catch (FormatException erro)
+                                        {
+                                            Console.WriteLine("Detectamos um erro, tente novamente.");
+                                            Batalha();
+                                        }
+
+                                        if (Gaming.selectOption == 1)
+                                        {
+                                            fakeHero.AtacaEspada();
+                                            zumbi.Hp = zumbi.Hp - fakeHero.Damage;
+                                        }
+                                        else if (Gaming.selectOption == 2)
+                                        {
+                                            if (fakeHero.Magias > 0)
+                                            {
+                                                fakeHero.ChoqueEletrico();
+                                                zumbi.Hp = zumbi.Hp - fakeHero.Damage;
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine("A magia brochou!");
+                                            }
+                                        }
+                                        else if (Gaming.selectOption == 3)
+                                        {
+                                            if (fakeHero.Potions > 0)
+                                            {
+                                                fakeHero.Potions--;
+                                                double cura = 29 - fakeHero.Hp;
+                                                fakeHero.Hp += cura;
+                                                Console.WriteLine($"Você recuperou {cura} pontos de vida.");
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine("Você está sem poções de cura!");
+                                            }
+                                        }
+
+                                        if (zumbi.Hp >= 1)
+                                        {
+                                            Random random = new Random();
+                                            int ataque = random.Next(1, 3);
+                                            if (ataque == 1)
+                                            {
+                                                zumbi.Mordida();
+                                                fakeHero.Hp = fakeHero.Hp - zumbi.InimigoDamage;
+                                            }
+                                            else
+                                            {
+                                                zumbi.Arranha();
+                                                fakeHero.Hp = fakeHero.Hp - zumbi.InimigoDamage;
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine("\nO morto-vivo cai no chão emitindo um baque seco. A carcaça reanimada por necromancia já não apresenta perigo.");
+                                            Console.WriteLine("\nPressione ENTER para continuar.");
+                                            Console.ReadLine();
+                                            continue;
+                                        }
+
+                                        if (fakeHero.Hp <= 0)
+                                        {
+                                            Console.WriteLine("Com arranhões e mordidas, o zumbi arranca pedaços e destrói seu corpo. Em seus últimos momentos você se sente patético por ter sido derrotado.");
+                                            Console.WriteLine("\nPressione ENTER para continuar.");
+                                            Console.ReadLine();
+                                            continue;
+                                        }
+                                    }
+                                    idInimigo++;
+                                    break;
                             }
-                            idInimigo++;
+                            break;
+
+                        case 3:
+                            fakeHero.Potions = 3;
+                            Inimigos esqueleto = new Inimigos(15);
+                            switch (gemasDeVida)
+                            {
+                                case 0:
+                                    while (esqueleto.Hp > 0 && fakeHero.Hp > 0)
+                                    {
+                                        Console.Clear();
+                                        fakeHero.StatusBar();
+
+                                        Console.WriteLine("\nEscolha sua ação:");
+                                        Console.WriteLine("\n1.Atacar com a espada");
+                                        Console.WriteLine("\n2.Usar o choque elétrico");
+                                        Console.WriteLine("\n3.Usar poção de cura");
+
+                                        try
+                                        {
+                                            Gaming.selectOption = int.Parse(Console.ReadLine());
+                                        }
+                                        catch (FormatException erro)
+                                        {
+                                            Console.WriteLine("Detectamos um erro, tente novamente.");
+                                            Batalha();
+                                        }
+
+                                        if (Gaming.selectOption == 1)
+                                        {
+                                            fakeHero.AtacaEspada();
+                                            esqueleto.Hp = esqueleto.Hp - fakeHero.Damage;
+                                        }
+                                        else if (Gaming.selectOption == 2)
+                                        {
+                                            if (fakeHero.Magias > 0)
+                                            {
+                                                fakeHero.ChoqueEletrico();
+                                                esqueleto.Hp = esqueleto.Hp - fakeHero.Damage;
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine("A magia brochou!");
+                                            }
+                                        }
+                                        else if (Gaming.selectOption == 3)
+                                        {
+                                            if (fakeHero.Potions > 0)
+                                            {
+                                                fakeHero.Potions--;
+                                                double cura = 20 - fakeHero.Hp;
+                                                fakeHero.Hp += cura;
+                                                Console.WriteLine($"Você recuperou {cura} pontos de vida.");
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine("Você está sem poções de cura!");
+                                            }
+                                        }
+
+                                        if (esqueleto.Hp >= 1)
+                                        {
+                                            Random random = new Random();
+                                            int ataque = random.Next(1, 5);
+                                            if (ataque == 1 || ataque == 2 || ataque == 3)
+                                            {
+                                                esqueleto.EspadaEnferrujada();
+                                                fakeHero.Hp = fakeHero.Hp - esqueleto.InimigoDamage;
+                                            }
+                                            else
+                                            {
+                                                esqueleto.Cabeçada();
+                                                fakeHero.Hp = fakeHero.Hp - esqueleto.InimigoDamage;
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine("\nA magia se desfaz e o esqueleto soldado se desmonta. Ossos se quebram e se espalham junto de seu equipamento enferrujado.");
+                                            Console.WriteLine("\nPressione ENTER para continuar.");
+                                            Console.ReadLine();
+                                            continue;
+                                        }
+
+                                        if (fakeHero.Hp <= 0)
+                                        {
+                                            Console.WriteLine("Você sente a espada enferrujada sendo enterrada e retirada do seu peito. Antes de morrer, você vê seu inimigo te dando as costas indiferente.");
+                                            Console.WriteLine("\nPressione ENTER para continuar.");
+                                            Console.ReadLine();
+                                            continue;
+                                        }
+                                    }
+                                    idInimigo++;
+                                    break;
+
+                                case 1:
+                                    fakeHero.Hp = 29;
+                                    while (esqueleto.Hp > 0 && fakeHero.Hp > 0)
+                                    {
+                                        Console.Clear();
+                                        fakeHero.StatusBar();
+
+                                        Console.WriteLine("\nEscolha sua ação:");
+                                        Console.WriteLine("\n1.Atacar com a espada");
+                                        Console.WriteLine("\n2.Usar o choque elétrico");
+                                        Console.WriteLine("\n3.Usar poção de cura");
+
+                                        try
+                                        {
+                                            Gaming.selectOption = int.Parse(Console.ReadLine());
+                                        }
+                                        catch (FormatException erro)
+                                        {
+                                            Console.WriteLine("Detectamos um erro, tente novamente.");
+                                            Batalha();
+                                        }
+
+                                        if (Gaming.selectOption == 1)
+                                        {
+                                            fakeHero.AtacaEspada();
+                                            esqueleto.Hp = esqueleto.Hp - fakeHero.Damage;
+                                        }
+                                        else if (Gaming.selectOption == 2)
+                                        {
+                                            if (fakeHero.Magias > 0)
+                                            {
+                                                fakeHero.ChoqueEletrico();
+                                                esqueleto.Hp = esqueleto.Hp - fakeHero.Damage;
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine("A magia brochou!");
+                                            }
+                                        }
+                                        else if (Gaming.selectOption == 3)
+                                        {
+                                            if (fakeHero.Potions > 0)
+                                            {
+                                                fakeHero.Potions--;
+                                                double cura = 29 - fakeHero.Hp;
+                                                fakeHero.Hp += cura;
+                                                Console.WriteLine($"Você recuperou {cura} pontos de vida.");
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine("Você está sem poções de cura!");
+                                            }
+                                        }
+
+                                        if (esqueleto.Hp >= 1)
+                                        {
+                                            Random random = new Random();
+                                            int ataque = random.Next(1, 5);
+                                            if (ataque == 1 || ataque == 2 || ataque == 3)
+                                            {
+                                                esqueleto.EspadaEnferrujada();
+                                                fakeHero.Hp = fakeHero.Hp - esqueleto.InimigoDamage;
+                                            }
+                                            else
+                                            {
+                                                esqueleto.Cabeçada();
+                                                fakeHero.Hp = fakeHero.Hp - esqueleto.InimigoDamage;
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine("\nA magia se desfaz e o esqueleto soldado se desmonta. Ossos se quebram e se espalham junto de seu equipamento enferrujado.");
+                                            Console.WriteLine("\nPressione ENTER para continuar.");
+                                            Console.ReadLine();
+                                            continue;
+                                        }
+
+                                        if (fakeHero.Hp <= 0)
+                                        {
+                                            Console.WriteLine("Você sente a espada enferrujada sendo enterrada e retirada do seu peito. Antes de morrer, você vê seu inimigo te dando as costas indiferente.");
+                                            Console.WriteLine("\nPressione ENTER para continuar.");
+                                            Console.ReadLine();
+                                            continue;
+                                        }
+                                    }
+                                    idInimigo++;
+                                    break;
+
+                                case 2:
+                                    fakeHero.Hp = 42;
+                                    while (esqueleto.Hp > 0 && fakeHero.Hp > 0)
+                                    {
+                                        Console.Clear();
+                                        fakeHero.StatusBar();
+
+                                        Console.WriteLine("\nEscolha sua ação:");
+                                        Console.WriteLine("\n1.Atacar com a espada");
+                                        Console.WriteLine("\n2.Usar o choque elétrico");
+                                        Console.WriteLine("\n3.Usar poção de cura");
+
+                                        try
+                                        {
+                                            Gaming.selectOption = int.Parse(Console.ReadLine());
+                                        }
+                                        catch (FormatException erro)
+                                        {
+                                            Console.WriteLine("Detectamos um erro, tente novamente.");
+                                            Batalha();
+                                        }
+
+                                        if (Gaming.selectOption == 1)
+                                        {
+                                            fakeHero.AtacaEspada();
+                                            esqueleto.Hp = esqueleto.Hp - fakeHero.Damage;
+                                        }
+                                        else if (Gaming.selectOption == 2)
+                                        {
+                                            if (fakeHero.Magias > 0)
+                                            {
+                                                fakeHero.ChoqueEletrico();
+                                                esqueleto.Hp = esqueleto.Hp - fakeHero.Damage;
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine("A magia brochou!");
+                                            }
+                                        }
+                                        else if (Gaming.selectOption == 3)
+                                        {
+                                            if (fakeHero.Potions > 0)
+                                            {
+                                                fakeHero.Potions--;
+                                                double cura = 42 - fakeHero.Hp;
+                                                fakeHero.Hp += cura;
+                                                Console.WriteLine($"Você recuperou {cura} pontos de vida.");
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine("Você está sem poções de cura!");
+                                            }
+                                        }
+
+                                        if (esqueleto.Hp >= 1)
+                                        {
+                                            Random random = new Random();
+                                            int ataque = random.Next(1, 5);
+                                            if (ataque == 1 || ataque == 2 || ataque == 3)
+                                            {
+                                                esqueleto.EspadaEnferrujada();
+                                                fakeHero.Hp = fakeHero.Hp - esqueleto.InimigoDamage;
+                                            }
+                                            else
+                                            {
+                                                esqueleto.Cabeçada();
+                                                fakeHero.Hp = fakeHero.Hp - esqueleto.InimigoDamage;
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine("\nA magia se desfaz e o esqueleto soldado se desmonta. Ossos se quebram e se espalham junto de seu equipamento enferrujado.");
+                                            Console.WriteLine("\nPressione ENTER para continuar.");
+                                            Console.ReadLine();
+                                            continue;
+                                        }
+
+                                        if (fakeHero.Hp <= 0)
+                                        {
+                                            Console.WriteLine("Você sente a espada enferrujada sendo enterrada e retirada do seu peito. Antes de morrer, você vê seu inimigo te dando as costas indiferente.");
+                                            Console.WriteLine("\nPressione ENTER para continuar.");
+                                            Console.ReadLine();
+                                            continue;
+                                        }
+                                    }
+                                    idInimigo++;
+                                    break;
+                            }
+                            break;
+
+                        case 4:
+                            break;
+
+                        case 5:
+                            break;
+
+                        case 6:
+                            break;
+
+                        case 7:
+                            break;
+
+                        case 8:
+                            break;
+
+                        case 9:
+                            break;
+
+                        case 10:
+                            break;
+
+                        case 11:
                             break;
                     }
                     break;

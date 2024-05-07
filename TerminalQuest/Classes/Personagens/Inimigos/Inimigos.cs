@@ -78,6 +78,36 @@ namespace TerminalQuest.Classes.Personagens.Inimigos
             Console.WriteLine("\nPressione ENTER para continuar.");
             Console.ReadLine();
         }
+
+        public void EspadaEnferrujada()
+        {
+            Random random = new Random();
+            int d6 = random.Next(1, 7);
+            InimigoDamage = d6;
+
+            if (d6 <= 4)
+            {
+                Console.WriteLine($"\nDe forma desajeitada, o esqueleto brande a espada em sua direção. Seu corte causa {d6} de dano.");
+            }
+            else
+            {
+                Console.WriteLine($"\nO golpe foi mais forte do que você esperava e te causa {d6} de dano.");
+            }
+
+            Console.WriteLine("\nPressione ENTER para continuar.");
+            Console.ReadLine();
+        }
+
+        public void Cabeçada()
+        {
+            Random random = new Random();
+            int d4 = random.Next(1, 5);
+            InimigoDamage = d4;
+            Console.WriteLine($"\nVocê tonteia por um segundo após o esqueleto te dar uma cabeçada com seu elmo podre. O impacto causou {d4} de dano.");
+
+            Console.WriteLine("\nPressione ENTER para continuar.");
+            Console.ReadLine();
+        }
     }
 
 }
