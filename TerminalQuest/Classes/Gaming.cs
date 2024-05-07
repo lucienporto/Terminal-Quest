@@ -309,7 +309,7 @@ namespace TerminalQuest.Classes
                                     break;
 
                                 case 1:
-                                    fakeHero.Hp = (fakeHero.Hp * 0.45) + fakeHero.Hp;
+                                    fakeHero.Hp = 29;
                                     while (zumbi.Hp > 0 && fakeHero.Hp > 0)
                                     {
                                         Console.Clear();

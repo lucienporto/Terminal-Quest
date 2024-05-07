@@ -108,6 +108,54 @@ namespace TerminalQuest.Classes.Personagens.Inimigos
             Console.WriteLine("\nPressione ENTER para continuar.");
             Console.ReadLine();
         }
+
+        public void Tacape()
+        {
+            Random random = new Random();
+            int d8 = random.Next(1, 9);
+            InimigoDamage = d8;
+            if (d8 == 0)
+            {
+                Console.WriteLine($"\nO goblin agita o tacape com violência, mas mesmo assim erra o ataque.");
+            }
+            else if (d8 <= 3)
+            {
+                Console.WriteLine($"\nO goblin tenta te acertar, mas o golpe sai desajeitado. Você recebe apenas {d8} de dano.");
+            }
+            else if ((d8 >= 4) && (d8 <= 7))
+            {
+                Console.WriteLine($"\nEle te acerta com uma golpe certeiro que te faz perder o equilíbrio por um instante. Este ataque causou {d8} de dano.");
+            }
+            else
+            {
+                Console.WriteLine($"\nUsando toda a sua força, o goblin te ataca com o tacape. Sua visão fica turva por alguns segundos após levar {d8} de dano.");
+            }
+
+            Console.WriteLine("\nPressione ENTER para continuar.");
+            Console.ReadLine();
+        }
+
+        public void Faca()
+        {
+            Random random = new Random();
+            int d6 = random.Next(0, 7);
+            InimigoDamage = d6;
+            if (d6 == 0)
+            {
+                Console.WriteLine($"\nO goblin te ataca com a faca, mas ele errou o ataque.");
+            }
+            else if ((d6 >= 1) && (d6 <= 5))
+            {
+                Console.WriteLine($"\nMostrando um bom manejo de sua faca, o goblin consegue te causar um corte que proporciona {d6} de dano.");
+            }
+            else
+            {
+                Console.WriteLine($"\nEnquanto emite um grito furioso, o goblin finca a faca em você causando {d6} de dano.");
+            }
+
+            Console.WriteLine("\nPressione ENTER para continuar.");
+            Console.ReadLine();
+        }
     }
 
 }
